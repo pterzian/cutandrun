@@ -1,6 +1,6 @@
 # CUT&RUN Data Processing Pipeline
 
-This repository provides a streamlined pipeline for processing CUT&RUN data, encompassing steps for trimming reads, aligning them to both primary and spike-in genomes, deduplicating reads, and calling peaks. These processes facilitate accurate spike-in normalization and downstream analyses.
+This repository provides a streamlined pipeline for processing CUT&RUN data, encompassing steps for trimming reads, aligning them to both primary and spike-in genomes, deduplicating reads, and calling peaks.
 
 ## Pipeline Overview
 
