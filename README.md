@@ -58,32 +58,32 @@ Sample sheets can be built using `./build_sample_sheet.sh /path/to/raw_reads_fol
  | | |-WT1_H3k27ac_spikein_flagstat.txt
  | | |-WT1_H3k27ac_spikein_aligned.bam
  | |-peaks
- | | |-WT2_Ser5P_Ab_5min_broad_peaks.xls
- | | |-WT2_Ser5P_Ab_5min_narrow_model.r
- | | |-WT2_Ser5P_Ab_5min_narrow_peaks.narrowPeak
- | | |-WT2_Ser5P_Ab_5min_broad_peaks.gappedPeak
- | | |-WT2_Ser5P_Ab_5min_narrow_summits.bed
- | | |-WT2_Ser5P_Ab_5min_narrow_peaks.xls
- | | |-WT2_Ser5P_Ab_5min_broad_model.r
- | | |-WT2_Ser5P_Ab_5min_broad_peaks.broadPeak
+ | | |-WT1_H3k27ac_broad_peaks.xls
+ | | |-WT1_H3k27ac_narrow_model.r
+ | | |-WT1_H3k27ac_narrow_peaks.narrowPeak
+ | | |-WT1_H3k27ac_broad_peaks.gappedPeak
+ | | |-WT1_H3k27ac_narrow_summits.bed
+ | | |-WT1_H3k27ac_narrow_peaks.xls
+ | | |-WT1_H3k27ac_broad_model.r
+ | | |-WT1_H3k27ac_broad_peaks.broadPeak
  | |-deduplicated
- | | |-WT2_Ser5P_Ab_5min_primary_dedup_flagstat.txt
- | | |-WT2_Ser5P_Ab_5min_primary_dedup_metrics.txt
- | | |-WT2_Ser5P_Ab_5min_spikein_dedup_metrics.txt
- | | |-WT2_Ser5P_Ab_5min_spikein_dedup.bam
- | | |-WT2_Ser5P_Ab_5min_primary_dedup.bam
- | | |-WT2_Ser5P_Ab_5min_spikein_dedup_flagstat.txt
+ | | |-WT1_H3k27ac_primary_dedup_flagstat.txt
+ | | |-WT1_H3k27ac_primary_dedup_metrics.txt
+ | | |-WT1_H3k27ac_spikein_dedup_metrics.txt
+ | | |-WT1_H3k27ac_spikein_dedup.bam
+ | | |-WT1_H3k27ac_primary_dedup.bam
+ | | |-WT1_H3k27ac_spikein_dedup_flagstat.txt
  | |-merged_fastq
- | | |-WT2_Ser5P_Ab_5min_merged_R1.fq.gz
- | | |-WT2_Ser5P_Ab_5min_merged_R2.fq.gz
+ | | |-WT1_H3k27ac_merged_R1.fq.gz
+ | | |-WT1_H3k27ac_merged_R2.fq.gz
  | |-trimmed
- | | |-WT2_Ser5P_Ab_5min_trimmed_R2.fq.gz
+ | | |-WT1_H3k27ac_trimmed_R2.fq.gz
  | | |-fastp_report.json
- | | |-WT2_Ser5P_Ab_5min_trimmed_R1.fq.gz
+ | | |-WT1_H3k27ac_trimmed_R1.fq.gz
  | | |-fastp_report.html
  | |-mapped_primary
- | | |-WT2_Ser5P_Ab_5min_primary_flagstat.txt
- | | |-WT2_Ser5P_Ab_5min_primary_aligned.bam
+ | | |-WT1_H3k27ac_primary_flagstat.txt
+ | | |-WT1_H3k27ac_primary_aligned.bam
 ```
 * A file called `flagstat_summary.tsv` collecting metrics about the number of reads at the different steps of the pipeline that can be usefull for downstram spike in normalization.
 
