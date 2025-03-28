@@ -2,6 +2,8 @@
 
 This repository provides a pipeline for processing CUT&RUN data, encompassing steps for trimming reads, aligning them to both primary and spike-in genomes, deduplicating reads, and calling peaks.
 
+**! Important :** *the pipeline is still being developed. Some features are not quite complete such as the peakcalling step which can't use control yet.*
+
 ## Pipeline Overview
 
 1. **Trim Reads:** Remove adapter sequences and low-quality bases from raw sequencing reads.
@@ -41,8 +43,8 @@ WT1_H3k27ac,cutandrun,/path/to/WT1_H3k27ac_xyx_1.fq.gz,/path/to/WT1_H3k27ac_xyx_
 
 ### Easy building of the sample sheet
 
-Sample sheets can be build using `./build_sample_sheet.sh /path/to/raw_reads_folders`
+Sample sheets can be built using `./build_sample_sheet.sh /path/to/raw_reads_folders`
 
-*Notes : When sequencing required multiple run to reach the expected sequencing depth, each run much have its own line in the sample_sheet. Reads with the same sample name will be merged at the start of the pipeline.*
+*Notes : When sequencing required multiple runs to reach the expected sequencing depth, each run much have its own line in the sample_sheet. Reads with the same sample name will be merged at the start of the pipeline.*
 
  
