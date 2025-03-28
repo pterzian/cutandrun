@@ -1,6 +1,6 @@
 # CUT&RUN Data Processing Pipeline
 
-This repository provides a streamlined pipeline for processing CUT&RUN data, encompassing steps for trimming reads, aligning them to both primary and spike-in genomes, deduplicating reads, and calling peaks.
+This repository provides a pipeline for processing CUT&RUN data, encompassing steps for trimming reads, aligning them to both primary and spike-in genomes, deduplicating reads, and calling peaks.
 
 ## Pipeline Overview
 
@@ -39,4 +39,10 @@ WT1_H3k27ac,cutandrun,/path/to/WT1_H3k27ac_xxx_1.fq.gz,/path/to/WT1_H3k27ac_xxx_
 WT1_H3k27ac,cutandrun,/path/to/WT1_H3k27ac_xyx_1.fq.gz,/path/to/WT1_H3k27ac_xyx_2.fq.gz
 ```
 
+### Easy building of the sample sheet
+
+Sample sheets can be build using `./build_sample_sheet.sh /path/to/raw_reads_folders`
+
 *Notes : When sequencing required multiple run to reach the expected sequencing depth, each run much have its own line in the sample_sheet. Reads with the same sample name will be merged at the start of the pipeline.*
+
+ 
