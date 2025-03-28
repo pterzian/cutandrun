@@ -47,4 +47,46 @@ Sample sheets can be built using `./build_sample_sheet.sh /path/to/raw_reads_fol
 
 *Notes : When sequencing required multiple runs to reach the expected sequencing depth, each run much have its own line in the sample_sheet. Reads with the same sample name will be merged at the start of the pipeline.*
 
- 
+
+### Expected output of the pipeline
+
+* One folder per sample with the following structure :
+
+```
+|-WT1_H3k27ac
+ | |-mapped_spikein
+ | | |-WT1_H3k27ac_spikein_flagstat.txt
+ | | |-WT1_H3k27ac_spikein_aligned.bam
+ | |-peaks
+ | | |-WT2_Ser5P_Ab_5min_broad_peaks.xls
+ | | |-WT2_Ser5P_Ab_5min_narrow_model.r
+ | | |-WT2_Ser5P_Ab_5min_narrow_peaks.narrowPeak
+ | | |-WT2_Ser5P_Ab_5min_broad_peaks.gappedPeak
+ | | |-WT2_Ser5P_Ab_5min_narrow_summits.bed
+ | | |-WT2_Ser5P_Ab_5min_narrow_peaks.xls
+ | | |-WT2_Ser5P_Ab_5min_broad_model.r
+ | | |-WT2_Ser5P_Ab_5min_broad_peaks.broadPeak
+ | |-deduplicated
+ | | |-WT2_Ser5P_Ab_5min_primary_dedup_flagstat.txt
+ | | |-WT2_Ser5P_Ab_5min_primary_dedup_metrics.txt
+ | | |-WT2_Ser5P_Ab_5min_spikein_dedup_metrics.txt
+ | | |-WT2_Ser5P_Ab_5min_spikein_dedup.bam
+ | | |-WT2_Ser5P_Ab_5min_primary_dedup.bam
+ | | |-WT2_Ser5P_Ab_5min_spikein_dedup_flagstat.txt
+ | |-merged_fastq
+ | | |-WT2_Ser5P_Ab_5min_merged_R1.fq.gz
+ | | |-WT2_Ser5P_Ab_5min_merged_R2.fq.gz
+ | |-trimmed
+ | | |-WT2_Ser5P_Ab_5min_trimmed_R2.fq.gz
+ | | |-fastp_report.json
+ | | |-WT2_Ser5P_Ab_5min_trimmed_R1.fq.gz
+ | | |-fastp_report.html
+ | |-mapped_primary
+ | | |-WT2_Ser5P_Ab_5min_primary_flagstat.txt
+ | | |-WT2_Ser5P_Ab_5min_primary_aligned.bam
+```
+* A file called `flagstat_summary.tsv` collecting metrics about the number of reads at the different steps of the pipeline that can be usefull for downstram spike in normalization.
+
+* A `timing_report.tsv` file with the time spend for each steps of the pipeline
+
+
