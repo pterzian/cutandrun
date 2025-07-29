@@ -12,17 +12,21 @@ This repository provides a pipeline for processing CUT&RUN data, encompassing st
 4. **Deduplicate Reads:** Eliminate PCR duplicates to ensure data accuracy.
 5. **Call Peaks:** Identify regions of significant enrichment, indicating protein-DNA interactions.
 
+> [!CAUTION]
+> The peak calling step is still under development and is only tunned for human data at the moment. 
+
 ## Getting Started
 
 ### Prerequisites
 
 Ensure that the following tools are installed and accessible in your system's PATH:
 
-- [Fastp](https://github.com/OpenGene/fastp): For trimming adapter sequences.
-- [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml): For aligning reads to reference genomes.
-- [Samtools](http://www.htslib.org/): For handling SAM/BAM files.
-- [Picard](http://broadinstitute.github.io/picard/): For deduplication of reads.
-- [MACS2](https://github.com/macs3-project/MACS): For peak calling.
+- [Fastp](https://github.com/OpenGene/fastp): For trimming adapter sequences
+- [Bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml): For aligning reads to reference genomes
+- [Samtools](http://www.htslib.org/): For handling SAM/BAM files
+- [Picard](http://broadinstitute.github.io/picard/): For deduplication of reads
+- [MACS2](https://github.com/macs3-project/MACS): For peak calling
+- [Deeptools](https://github.com/deeptools/deepTools/): For downstream analysis <mark>(not needed to run the pipeline)</mark>
 
 ## Use the pipeline
 
@@ -90,3 +94,19 @@ Sample sheets can be built using `./build_sample_sheet.sh /path/to/raw_reads_fol
 * A `timing_report.tsv` file with the time spend for each steps of the pipeline
 
 
+### Downstream QC analysis
+
+The script `run_plot_cor.sh` was designed to generate scatterplots, heatmaps, and PCA plots using `deeptools` library. 
+
+```
+Usage: run_plot_cor.sh <study_name> <bam_dir> <bin_size> [bam_pattern]
+```
+
+Here is an example :
+
+```
+run_plot_cor.sh test_run ../all_WT_bam/ 200  "S1_WT2_D_0.001*.bam"
+```
+
+> [!CAUTION]
+> The first step of `run_plot_cor.sh` is the generation of a `multiBamSummary` matrix that needs all bam to be indexed. Because the last step of the pipeline is the deduplication, output bams are not sorted or indexed. This supplementary step can be done using `samtools sort` and `samtools index` or `sambamba sort` that combine both sorting and indexing.
