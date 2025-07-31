@@ -94,7 +94,9 @@ Sample sheets can be built using `./build_sample_sheet.sh /path/to/raw_reads_fol
 * A `timing_report.tsv` file with the time spend for each steps of the pipeline
 
 
-### Downstream QC analysis
+### Downstream analysis
+
+**Correlation between samples**
 
 The script `run_plot_cor.sh` was designed to generate scatterplots, heatmaps, and PCA plots using `deeptools` library. 
 
@@ -110,3 +112,30 @@ run_plot_cor.sh test_run ../all_WT_bam/ 200  "S1_WT2_D_0.001*.bam"
 
 > [!CAUTION]
 > The first step of `run_plot_cor.sh` is the generation of a `multiBamSummary` matrix that needs all bam to be indexed. Because the last step of the pipeline is the deduplication, output bams are not sorted or indexed. This supplementary step can be done using `samtools sort` and `samtools index` or `sambamba sort` that combine both sorting and indexing.
+
+
+**Bam to bigwig file**
+
+The script `generate_bamcoverage_command.sh` was written to generates list of bamcoverage commands that can be launch to generate bigwig files.
+
+```
+Usage: ./generate_bamcoverage_command.sh <bam_dir> <bam_pattern> <normalize_method: CPM|RPKM> <blacklist.bed> <stranded: stranded|unstranded> <output_script.sh> [output_dir] [--binSize N] [--nproc N]
+
+Parameters:
+  bam_dir          Directory containing BAM files.
+  bam_pattern      Pattern to match BAM files (e.g., '*.bam').
+  normalize_method Normalization method: CPM or RPKM.
+  blacklist.bed    Path to blacklist BED file.
+  stranded         'stranded' to generate stranded bigWigs (forward & reverse), 'unstranded' for unstranded.
+  output_script.sh Output bash script file name to write commands.
+  output_dir       (Optional) Directory to save bigWig files. Defaults to current directory.
+
+Optional flags:
+  --binSize N      Bin size for bamCoverage (default: 5).
+  --nproc N        Number of processors/threads for bamCoverage (default: 2).
+
+Example:
+  ./generate_bamcoverage_command.sh /data/bams '*.bam' CPM /refs/blacklist.bed stranded bigwig_commands.sh /results --binSize 10 --nproc 4
+```
+
+The output of this script is file containing all `bamcoverage` command lines.
