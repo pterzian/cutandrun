@@ -12,7 +12,7 @@ This repository provides a pipeline for processing CUT&RUN data, encompassing st
 4. **Deduplicate Reads:** Eliminate PCR duplicates to ensure data accuracy.
 5. **Call Peaks:** Identify regions of significant enrichment, indicating protein-DNA interactions.
 
-> [!CAUTION]
+> [!WARNING]
 > The peak calling step is still under development and is only tunned for human data at the moment. 
 
 ## Getting Started
@@ -110,7 +110,7 @@ Here is an example :
 run_plot_cor.sh test_run ../all_WT_bam/ 200  "S1_WT2_D_0.001*.bam"
 ```
 
-> [!CAUTION]
+> [!WARNING]
 > The first step of `run_plot_cor.sh` is the generation of a `multiBamSummary` matrix that needs all bam to be indexed. Because the last step of the pipeline is the deduplication, output bams are not sorted or indexed. This supplementary step can be done using `samtools sort` and `samtools index` or `sambamba sort` that combine both sorting and indexing.
 
 
@@ -137,5 +137,8 @@ Optional flags:
 Example:
   ./generate_bamcoverage_command.sh /data/bams '*.bam' CPM /refs/blacklist.bed stranded bigwig_commands.sh /results --binSize 10 --nproc 4
 ```
+
+> [!IMPORTANT]  
+> Make sure to quote the pattern to match BAM files.
 
 The output of this script is file containing all `bamcoverage` command lines.
