@@ -107,16 +107,15 @@ for sample_name in "${!fastq_r1_files[@]}"; do
     measure_time "UMI Deduplication Spikein" "$sample_name" ./umi_dedup.sh "$sample_name" "$spikein_bam" "$dedup_umi_spikein_bam"
 
     # Step 7a: Standard Deduplication (Primary)
-    dedup_primary_bam="${sample_output_dir}/deduplicated/primary/${sample_name}_primary_dedup.bam"
-    measure_time "Deduplication Primary" "$sample_name" ./deduplicate_reads.sh "$sample_name" "$primary_bam" "$dedup_primary_bam"
+    #dedup_primary_bam="${sample_output_dir}/deduplicated/primary/${sample_name}_primary_dedup.bam"
+    #measure_time "Deduplication Primary" "$sample_name" ./deduplicate_reads.sh "$sample_name" "$primary_bam" "$dedup_primary_bam"
 
     # Step 7b: Standard Deduplication (Spike-in)
-    dedup_spikein_bam="${sample_output_dir}/deduplicated/spikein/${sample_name}_spikein_dedup.bam"
-    measure_time "Deduplication Spikein" "$sample_name" ./deduplicate_reads.sh "$sample_name" "$spikein_bam" "$dedup_spikein_bam"
+    #dedup_spikein_bam="${sample_output_dir}/deduplicated/spikein/${sample_name}_spikein_dedup.bam"
+    #measure_time "Deduplication Spikein" "$sample_name" ./deduplicate_reads.sh "$sample_name" "$spikein_bam" "$dedup_spikein_bam"
 
     # Step 8: Peak Calling (using standard dedup BAM by default)
-    measure_time "Peak Calling" "$sample_name" ./call_peaks.sh "$sample_name" "$dedup_primary_bam"
-
+    #measure_time "Peak Calling" "$sample_name" ./call_peaks.sh "$sample_name" "$dedup_primary_bam"`
 done
 
 echo "Pipeline complete. Summary file: $summary_tsv"
