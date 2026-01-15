@@ -16,7 +16,7 @@ flagstat_primary="${output_dir}/${sample_name}_primary_dedup_flagstat.txt"
 summary_tsv="output/flagstat_summary.tsv"
 
 # Run Picard to remove duplicates
-picard-tools MarkDuplicates \
+picard MarkDuplicatesWithMateCigar \
     I="$primary_bam" \
     O="$dedup_primary_bam" \
     M="$metrics_primary" \
@@ -35,7 +35,7 @@ metrics_spikein="${output_dir}/${sample_name}_spikein_dedup_metrics.txt"
 flagstat_spikein="${output_dir}/${sample_name}_spikein_dedup_flagstat.txt"
 
 # Run Picard to remove duplicates
-picard-tools MarkDuplicates \
+picard MarkDuplicatesWithMateCigar \
     I="$spikein_bam" \
     O="$dedup_spikein_bam" \
     M="$metrics_spikein" \
