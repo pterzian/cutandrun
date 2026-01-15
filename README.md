@@ -58,15 +58,6 @@ Sample sheets can be built using `./build_sample_sheet.sh /path/to/raw_reads_fol
  | |-mapped_spikein
  | | |-WT1_H3k27ac_spikein_flagstat.txt
  | | |-WT1_H3k27ac_spikein_aligned.bam
- | |-peaks
- | | |-WT1_H3k27ac_broad_peaks.xls
- | | |-WT1_H3k27ac_narrow_model.r
- | | |-WT1_H3k27ac_narrow_peaks.narrowPeak
- | | |-WT1_H3k27ac_broad_peaks.gappedPeak
- | | |-WT1_H3k27ac_narrow_summits.bed
- | | |-WT1_H3k27ac_narrow_peaks.xls
- | | |-WT1_H3k27ac_broad_model.r
- | | |-WT1_H3k27ac_broad_peaks.broadPeak
  | |-deduplicated
  | | |-WT1_H3k27ac_primary_dedup_flagstat.txt
  | | |-WT1_H3k27ac_primary_dedup_metrics.txt
