@@ -112,12 +112,7 @@ for sample_name in "${!fastq_r1_files[@]}"; do
 
     # Step 5: Deduplication
     measure_time "Deduplication" ./deduplicate_reads.sh "$sample_name" "$primary_bam" "$spikein_bam"
-    
-    # Define deduplicated BAM path
-    dedup_primary_bam="${sample_output_dir}/deduplicated/${sample_name}_primary_dedup.bam"
 
-    # Step 6: Peak Calling
-    measure_time "Peak Calling" ./call_peaks.sh "$sample_name" "$dedup_primary_bam"
 
 done
 
