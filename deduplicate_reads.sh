@@ -25,8 +25,8 @@ picard MarkDuplicatesWithMateCigar \
 # Generate flagstat for deduplicated BAM
 samtools flagstat "$dedup_primary_bam" > "$flagstat_primary"
 total_reads=$(grep -m 1 "in total" "$flagstat_primary" | awk '{print $1}')
-mapped_reads=$(grep "mapped (" "$flagstat_primary" | awk '{print $1}')
-pct_mapped=$(grep "mapped (" "$flagstat_primary" | awk -F '[()%]' '{print $2}')
+mapped_reads=$(grep -m 1 "mapped (" "$flagstat_primary" | awk '{print $1}')
+pct_mapped=$(grep -m 1 "mapped (" "$flagstat_primary" | awk -F '[()%]' '{print $2}')
 echo -e "${sample_name}\tprimary_dedup\t${total_reads}\t${mapped_reads}\t${pct_mapped}" >> "$summary_tsv"
 
 # Deduplicate Spike-in Genome BAM
@@ -44,6 +44,6 @@ picard MarkDuplicatesWithMateCigar \
 # Generate flagstat for deduplicated spike-in BAM
 samtools flagstat "$dedup_spikein_bam" > "$flagstat_spikein"
 total_reads=$(grep -m 1 "in total" "$flagstat_spikein" | awk '{print $1}')
-mapped_reads=$(grep "mapped (" "$flagstat_spikein" | awk '{print $1}')
-pct_mapped=$(grep "mapped (" "$flagstat_spikein" | awk -F '[()%]' '{print $2}')
+mapped_reads=$(grep -m 1 "mapped (" "$flagstat_spikein" | awk '{print $1}')
+pct_mapped=$(grep -m 1 "mapped (" "$flagstat_spikein" | awk -F '[()%]' '{print $2}')
 echo -e "${sample_name}\tspikein_dedup\t${total_reads}\t${mapped_reads}\t${pct_mapped}" >> "$summary_tsv"

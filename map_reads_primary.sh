@@ -34,8 +34,8 @@ rm "$sam_file"
 # Run flagstat and reformat results into summary file
 samtools flagstat "$bam_file" > "$flagstat_file"
 total_reads=$(grep -m 1 "in total" "$flagstat_file" | awk '{print $1}')
-mapped_reads=$(grep "mapped (" "$flagstat_file" | awk '{print $1}')
-pct_mapped=$(grep "mapped (" "$flagstat_file" | awk -F '[()%]' '{print $2}')
+mapped_reads=$(grep -m 1 "mapped (" "$flagstat_file" | awk '{print $1}')
+pct_mapped=$(grep -m 1 "mapped (" "$flagstat_file" | awk -F '[()%]' '{print $2}')
 
 # Append formatted stats to summary TSV
 echo -e "${sample_name}\tprimary\t${total_reads}\t${mapped_reads}\t${pct_mapped}" >> "$summary_tsv"
