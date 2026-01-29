@@ -68,8 +68,7 @@ for sample_name in "${!fastq_r1_files[@]}"; do
              "$sample_output_dir/deduplicated/primary" \
              "$sample_output_dir/deduplicated/spikein" \
              "$sample_output_dir/deduplicated_umi/primary" \
-             "$sample_output_dir/deduplicated_umi/spikein" \
-             "$sample_output_dir/peaks"
+             "$sample_output_dir/deduplicated_umi/spikein" 
 
     # Define merged file paths
     merged_r1="${sample_output_dir}/merged_fastq/${sample_name}_merged_R1.fq.gz"
@@ -98,7 +97,6 @@ for sample_name in "${!fastq_r1_files[@]}"; do
     spikein_bam="${sample_output_dir}/mapped_spikein/${sample_name}_spikein_aligned.bam"
     measure_time "Spike-in Mapping" "$sample_name" ./map_reads_spikein.sh "$sample_name" "$umi_r1" "$umi_r2" "$spikein_genome"
 
-<<<<<<< HEAD:run_cutandrun_2.sh
     # Step 6a: UMI Deduplication (Primary)
     dedup_umi_primary_bam="${sample_output_dir}/deduplicated_umi/primary/${sample_name}_primary_dedup_UMI.bam"
     measure_time "UMI Deduplication Primary" "$sample_name" ./umi_dedup.sh "$sample_name" "$primary_bam" "$dedup_umi_primary_bam"
@@ -106,11 +104,6 @@ for sample_name in "${!fastq_r1_files[@]}"; do
     # Step 6b: UMI Deduplication (Spike-in)
     dedup_umi_spikein_bam="${sample_output_dir}/deduplicated_umi/spikein/${sample_name}_spikein_dedup_UMI.bam"
     measure_time "UMI Deduplication Spikein" "$sample_name" ./umi_dedup.sh "$sample_name" "$spikein_bam" "$dedup_umi_spikein_bam"
-=======
-    # Step 5: Deduplication
-    measure_time "Deduplication" ./deduplicate_reads.sh "$sample_name" "$primary_bam" "$spikein_bam"
-
->>>>>>> origin/main:run_cutandrun.sh
 
     # Step 7a: Standard Deduplication (Primary)
     #dedup_primary_bam="${sample_output_dir}/deduplicated/primary/${sample_name}_primary_dedup.bam"
@@ -120,8 +113,7 @@ for sample_name in "${!fastq_r1_files[@]}"; do
     #dedup_spikein_bam="${sample_output_dir}/deduplicated/spikein/${sample_name}_spikein_dedup.bam"
     #measure_time "Deduplication Spikein" "$sample_name" ./deduplicate_reads.sh "$sample_name" "$spikein_bam" "$dedup_spikein_bam"
 
-    # Step 8: Peak Calling (using standard dedup BAM by default)
-    #measure_time "Peak Calling" "$sample_name" ./call_peaks.sh "$sample_name" "$dedup_primary_bam"`
+
 done
 
 echo "Pipeline complete. Summary file: $summary_tsv"
