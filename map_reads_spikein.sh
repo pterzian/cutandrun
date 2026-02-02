@@ -27,6 +27,7 @@ bowtie2 -x "$spikein_genome" -1 "$trimmed_r1" -2 "$trimmed_r2" --threads 4 --loc
 
 # Convert SAM to sorted BAM
 samtools view -bS "$sam_file" | samtools sort -o "$bam_file"
+samtools index "$bam_file"
 
 # Remove the SAM file after conversion
 rm "$sam_file"
