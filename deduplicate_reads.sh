@@ -15,9 +15,17 @@ metrics_primary="${output_dir}/${sample_name}_primary_dedup_metrics.txt"
 flagstat_primary="${output_dir}/${sample_name}_primary_dedup_flagstat.txt"
 summary_tsv="output/flagstat_summary.tsv"
 
+# samtools sort $primary_bam > "${output_dir}/${sample_name}_primary.sorted.bam"
+
+picard AddOrReplaceReadGroups \
+        I="$primary_bam" \
+        O="${output_dir}/${sample_name}_primary_addedgroups.bam" \
+        RGID=1 RGLB=lib1 RGPL=ILLUMINA RGPU=unit1 RGSM="$base" \
+        VALIDATION_STRINGENCY=SILENT
+
 # Run Picard to remove duplicates
-picard MarkDuplicatesWithMateCigar \
-    I="$primary_bam" \
+picard MarkDuplicates \
+    I="${output_dir}/${sample_name}_primary_addedgroups.bam" \
     O="$dedup_primary_bam" \
     M="$metrics_primary" \
     REMOVE_DUPLICATES=true
@@ -34,9 +42,17 @@ dedup_spikein_bam="${output_dir}/${sample_name}_spikein_dedup.bam"
 metrics_spikein="${output_dir}/${sample_name}_spikein_dedup_metrics.txt"
 flagstat_spikein="${output_dir}/${sample_name}_spikein_dedup_flagstat.txt"
 
+# samtools sort $primary_bam > "${output_dir}/${sample_name}_primary.sorted.bam"
+
+picard AddOrReplaceReadGroups \
+        I="$spikein_bam" \
+        O="${output_dir}/${sample_name}_spikein_addedgroups.bam" \
+        RGID=1 RGLB=lib1 RGPL=ILLUMINA RGPU=unit1 RGSM="$base" \
+        VALIDATION_STRINGENCY=SILENT
+
 # Run Picard to remove duplicates
-picard MarkDuplicatesWithMateCigar \
-    I="$spikein_bam" \
+picard MarkDuplicates \
+    I="${output_dir}/${sample_name}_spikein_addedgroups.bam" \
     O="$dedup_spikein_bam" \
     M="$metrics_spikein" \
     REMOVE_DUPLICATES=true
