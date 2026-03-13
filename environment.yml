@@ -10,3 +10,6 @@ dependencies:
   - deeptools=3.5.6
   - fastp=0.24.0
   - samtools=1.21
+  - umi_tools
+  - jq=1.7
+prefix: /data/home/terzianps/.conda/envs/cutandrun
