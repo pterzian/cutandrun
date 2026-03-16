@@ -1,6 +1,6 @@
 # CUT&RUN Data Processing Pipeline
 
-This repository provides a pipeline for processing CUT&RUN data, encompassing steps for trimming reads, aligning them to both primary and spike-in genomes, deduplicating reads, and calling peaks.
+This repository provides a pipeline for processing CUT&RUN data, encompassing steps for trimming reads, aligning them to both primary and spike-in genomes, deduplicating reads.
 
 ## Pipeline Overview
 
@@ -9,8 +9,6 @@ This repository provides a pipeline for processing CUT&RUN data, encompassing st
 3. **Align Reads to Spike-in Genome:** Map trimmed reads to the spike-in reference genome for normalization purposes.
 4. **Deduplicate Reads:** Eliminate PCR duplicates to ensure data accuracy.
 
-> [!WARNING]
-> The peak calling step is still under development and is only tunned for human data at the moment. 
 
 ## Getting Started
 
@@ -29,7 +27,7 @@ Or, you can use the provided conda yaml recipe to create a suited environment.
 The pipeline can be launched from the following command-line :
 
 ```
-./run_cutandrun_2.sh samplesheet.csv path/to/bowtie2-index-target path/to/bowtie2-index-spikein
+./run_cutandrun.sh samplesheet.csv path/to/bowtie2-index-target path/to/bowtie2-index-spikein
 ```
 
 The `samplesheet.csv` is comma-separated table with 4 fields such as : 
@@ -54,28 +52,30 @@ Sample sheets can be built using `./build_sample_sheet.sh /path/to/raw_reads_fol
 * One folder per sample with the following structure :
 
 ```
-|-WT1_H3k27ac
- | |-mapped_spikein
- | | |-WT1_H3k27ac_spikein_flagstat.txt
- | | |-WT1_H3k27ac_spikein_aligned.bam
- | |-deduplicated
- | | |-WT1_H3k27ac_primary_dedup_flagstat.txt
- | | |-WT1_H3k27ac_primary_dedup_metrics.txt
- | | |-WT1_H3k27ac_spikein_dedup_metrics.txt
- | | |-WT1_H3k27ac_spikein_dedup.bam
- | | |-WT1_H3k27ac_primary_dedup.bam
- | | |-WT1_H3k27ac_spikein_dedup_flagstat.txt
- | |-merged_fastq
- | | |-WT1_H3k27ac_merged_R1.fq.gz
- | | |-WT1_H3k27ac_merged_R2.fq.gz
- | |-trimmed
- | | |-WT1_H3k27ac_trimmed_R2.fq.gz
- | | |-fastp_report.json
- | | |-WT1_H3k27ac_trimmed_R1.fq.gz
- | | |-fastp_report.html
- | |-mapped_primary
- | | |-WT1_H3k27ac_primary_flagstat.txt
- | | |-WT1_H3k27ac_primary_aligned.bam
+|-mapped_spikein
+ | |-sample_rep1_spikein_aligned.bam
+ | |-sample_rep1_spikein_flagstat.txt
+ |-peaks
+ |-deduplicated
+ | |-sample_rep1_spikein_addedgroups.bam
+ | |-sample_rep1_spikein_dedup_metrics.txt
+ | |-sample_rep1_spikein_dedup.bam
+ | |-sample_rep1_primary_addedgroups.bam
+ | |-sample_rep1_primary_dedup_metrics.txt
+ | |-sample_rep1_spikein_dedup_flagstat.txt
+ | |-sample_rep1_primary_dedup.bam
+ | |-sample_rep1_primary_dedup_flagstat.txt
+ |-merged_fastq
+ | |-sample_rep1_merged_R2.fq.gz
+ | |-sample_rep1_merged_R1.fq.gz
+ |-trimmed
+ | |-sample_rep1_trimmed_R2.fq.gz
+ | |-fastp_report.json
+ | |-sample_rep1_trimmed_R1.fq.gz
+ | |-fastp_report.html
+ |-mapped_primary
+ | |-sample_rep1_primary_aligned.bam
+ | |-sample_rep1_primary_flagstat.txt
 ```
 * A file called `flagstat_summary.tsv` collecting metrics about the number of reads at the different steps of the pipeline that can be usefull for downstram spike in normalization.
 
