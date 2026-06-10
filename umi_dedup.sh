@@ -4,7 +4,7 @@
 # Deduplicate BAM files using UMI-tools
 
 # Check arguments
-if [ "$#" -ne 3 ]; then
+if [ "$#" -ne 4 ]; then
     echo "Usage: $0 <sample_name> <input.bam> <output_dedup.bam> <genome_target>"
     exit 1
 fi
