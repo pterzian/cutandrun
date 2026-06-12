@@ -17,7 +17,7 @@ flagstat_file="${output_dir}/${sample_name}_spikein_flagstat.txt"
 summary_tsv="output/flagstat_summary.tsv"
 
 # Run bowtie2 to map to the spike-in genome
-bowtie2 -x "$spikein_genome" -1 "$trimmed_r1" -2 "$trimmed_r2" --threads 4 --local --very-sensitive-local --no-mixed --no-discordant --phred33 --minins 10 --maxins 700 --dovetail -S "$sam_file"
+bowtie2 -x "$spikein_genome" -1 "$trimmed_r1" -2 "$trimmed_r2" --threads 4 --local --very-sensitive-local -S "$sam_file"
 
 # if [[ $? -ne 0 ]]; then
 #     echo "Error: Bowtie2 alignment failed."
